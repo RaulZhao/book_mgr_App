@@ -22,7 +22,7 @@ class App extends Component {
     this.isSearched = this.isSearched.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount () {
     Book.getAllBooks().then(jsonData => {
       if (!_.isEmpty(jsonData)) {
         this.setState({list: jsonData});
@@ -30,7 +30,7 @@ class App extends Component {
     });
   }
 
-  onDismiss(id) {
+  onDismiss (id) {
     const updateList = this.state.list.filter((item) => {
       return item.objectID !== id;
     });
@@ -38,7 +38,7 @@ class App extends Component {
     this.setState({list: updateList});
   }
 
-  onSearchChange(evt) {
+  onSearchChange (evt) {
     this.setState({searchTerm: evt.target.value})
   }
 
