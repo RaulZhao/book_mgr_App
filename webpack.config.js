@@ -31,6 +31,14 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       },
+      // {
+			//   test: /\.js$/,
+  		// 	include: [
+  		// 		path.resolve(__dirname, 'src')
+  		// 	],
+  		// 	loader: 'eslint-loader',
+  		// 	exclude: /node_modules/
+  		// },
       {
         test: /\.html$/,
         loader: 'html-loader'
