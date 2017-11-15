@@ -2,6 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const packageInfo = require('./package.json');
+const packageName = packageInfo.name.replace(/@[^/]+\//, '');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
@@ -13,7 +17,11 @@ module.exports = {
     pathinfo: false
   },
   resolve: {
-   extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    modules: [
+      path.resolve('./src'),
+      path.resolve('./node_modules')
+    ]
   },
   devServer: {
     historyApiFallback: true,
@@ -44,12 +52,12 @@ module.exports = {
         loader: 'html-loader'
       },
       {
-        test: /\.css/,
+        test: /\.css$/,
         loader: 'style-loader!css-loader'
       },
       {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader'
+        test: /\.less$/,
+        loader: ["style-loader", "css-loader","less-loader"]
       },
       {
         test: /\.svg$/,

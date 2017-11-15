@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import Header from './header/header';
 import Search from './components/search';
 import BookList from './components/book_list';
 import SearchResult from './components/search_result';
+import Booktable from './components/Booktable';
 import './App.css';
 import Book from './model/books';
 
@@ -52,6 +54,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <Booktable list={this.state.list} />
         <BookList
           list={this.state.list}
           onDismiss={this.onDismiss}>
