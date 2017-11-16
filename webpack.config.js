@@ -76,6 +76,13 @@ module.exports = {
         loader: ["style-loader", "css-loader","less-loader"]
       },
       {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 25000,
+        }
+      },
+      {
         test: /\.svg$/,
         loader: 'svg-react-loader'
       }
