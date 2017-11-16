@@ -19,7 +19,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
-      path.resolve('./src'),
       path.resolve('./node_modules')
     ]
   },
@@ -34,9 +33,26 @@ module.exports = {
     loaders: [
       {
         exclude: /node_modules/,
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        query:
+          {
+            presets:['stage-0','react']
+          }
+      },
+      {
+        exclude: /node_modules/,
+        test: /\.js$/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'stage-0']
+        }
+      },
+      {
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react', 'stage-0']
         }
       },
       // {
