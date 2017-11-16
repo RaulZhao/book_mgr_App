@@ -7,7 +7,7 @@ npm install
   ```js
   // Add this loaders in your webpack.config.js
   // You should not exclude node_modules directory from it.
-  // This is just an example.
+  // This is just an example. 
   module: {
     loaders: [
       {
