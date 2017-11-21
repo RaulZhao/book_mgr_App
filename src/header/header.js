@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import logo from '../images/logo.svg';
+import logo from '../images/icons8-evil.png';
 
-class Header extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+const TITLE = "Welcome to Raul's Book Storage";
 
-  render() {
-    return (
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to Raul Book Storage</h2>
-      </div>
-    )
-  }
+const Header = (props) => {
+  return (
+    <div className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+      <h2>{TITLE}</h2>
+    </div>
+  )
 }
 
 export default Header;

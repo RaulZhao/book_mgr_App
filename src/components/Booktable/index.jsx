@@ -2,16 +2,28 @@ import React, { Component } from 'react';
 import { BootstrapTable, TableHeaderColumn, InsertButton } from 'react-bootstrap-table';
 import TableModalHeader from './TableModalHeader';
 import TableModalFooter from './TableModalFooter';
+import Books from '../../model/books';
 import './style.css';
 
 const selectRowProp = {
-  mode: 'checkbox',
+  mode: 'radio',
   bgColor: 'rgb(238, 193, 213)'
 };
 
 class Booktable extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      list: []
+    }
+  }
+
+  componentDidMount () {
+    Books.getAllBooks().then(jsonData => {
+      if (!_.isEmpty(jsonData)) {
+        this.setState({list: jsonData});
+      }
+    });
   }
 
   createCustomInsertButton = (onClick) => {
@@ -19,8 +31,17 @@ class Booktable extends Component {
       <InsertButton
         btnText='CustomInsertText'
         className='my-custom-class'
-        onClick={ () => this.handleInsertButtonClick(onClick) }/>
+        onClick={() => this.handleInsertButtonClick(onClick) }/>
     );
+  }
+
+  addRowHandler(next, newRows) {
+    console.log(newRows);
+    next();
+  }
+
+  afterInsertRow(newRow) {
+    Books.createNewBook(newRow);
   }
 
   deleteRowHandler(next, dropRowKeys) {
@@ -29,6 +50,7 @@ class Booktable extends Component {
     if (confirm(`Are you sure you want to delete ${dropRowKeysStr}?`)) {
       // If the confirmation is true, call the function that
       // continues the deletion of the record.
+      Books.deleteBookById(dropRowKeys[0]);
       next();
     }
   }
@@ -41,14 +63,16 @@ class Booktable extends Component {
     return {
       insertModalHeader: TableModalHeader,
       insertModalFooter: TableModalFooter,
+      handleConfirmAddRow: this.addRowHandler,
       handleConfirmDeleteRow: this.deleteRowHandler,
-      afterDeleteRow: this.afterDeleteRow
+      afterDeleteRow: this.afterDeleteRow,
+      afterInsertRow: this.afterInsertRow
       // insertBtn: this.createCustomInsertButton
     };
   }
 
   render () {
-    const { list } = this.props;
+    const { list } = this.state;
     const options = this.getTableOptions();
 
     return (
