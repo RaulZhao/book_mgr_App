@@ -21,13 +21,13 @@ class App extends Component {
     this.isSearched = this.isSearched.bind(this);
   }
 
-  componentDidMount () {
-    Book.getAllBooks().then(jsonData => {
-      if (!_.isEmpty(jsonData)) {
-        this.setState({list: jsonData});
-      }
-    });
-  }
+  // componentDidMount () {
+  //   Book.getAllBooks().then(jsonData => {
+  //     if (!_.isEmpty(jsonData)) {
+  //       this.setState({list: jsonData});
+  //     }
+  //   });
+  // }
 
   onDismiss (id) {
     const updateList = this.state.list.filter((item) => {
@@ -51,7 +51,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Booktable list={this.state.list} />
+        <Booktable />
       </div>
     );
   }

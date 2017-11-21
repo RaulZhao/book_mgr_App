@@ -7,12 +7,10 @@ const TableModalFooter = (closeModal, save) => {
 
   const beforeClose = (e) => {
     console.log(`Before Close is invoked`);
-    alert(`[Custom Event]: Modal close event triggered!`);
   }
 
   const beforeSave = (e) => {
     console.log(`Before Save is invoked`);
-    alert(`[Custom Event]: Modal save event triggered!`);
   }
 
   const handleModalClose = (closeModal) => {
@@ -22,6 +20,7 @@ const TableModalFooter = (closeModal, save) => {
 
   const handleSave = (save) => {
     // it's not necessary to implement this function if you have no any process before save
+    console.log(arguments);
     save();
   }
 
